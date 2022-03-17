@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+  
+   <!-- Noticias -->
+   {% if publicaciones|length > 0 %}
+    {% include "publicacion/ultimasNoticias.html.twig" with { 'publicaciones': publicaciones ,'mensaje' : 'Noticias' } %}
+   {% endif %}
+   <!-- Noticias -->
+
+   {# Banners de Avisos #}   
+   {% if banners|length > 0 %}
+    {% include "banner/mostrarBanners.html.twig" with { 'banners': banners ,'mensaje' : 'Avisos' } %}
+   {% endif %}
+   {# Banners de Avisos #}
+
+
+
+
+{% endblock %}

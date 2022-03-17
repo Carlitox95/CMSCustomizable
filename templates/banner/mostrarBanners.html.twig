@@ -1,0 +1,17 @@
+<div class="row">
+ <h6 class="tituloColorOficial gris90">{{ mensaje }}</h6>
+
+  {% if banners|length > 0 %}
+    {% for banner in banners %}
+    <div class="col s12 m12">
+      <center>
+        {% if banner.publicacion %}
+         <a href="{{ path('app_publicacion_ver',{'idPublicacion': banner.publicacion.id}) }}"><img class="responsive-img" src="{{ asset(banner.imagen.url) }}"> </a>      
+        {% else %}
+         <img class="responsive-img" src="{{ asset(banner.imagen.url) }}">
+        {% endif %}       
+      </center> 
+    </div>      
+    {% endfor %}
+  {% endif %} 
+</div>

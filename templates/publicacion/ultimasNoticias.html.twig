@@ -1,0 +1,36 @@
+<!-- Caja de Noticias -->
+<div class="row">
+ <h6 class="tituloColorOficial gris90">{{ mensaje }}</h6>
+
+  {# Muestro las ultimas noticias #}
+  {% for publicacion in publicaciones %}
+    <!-- Noticia -->  
+    <div class="col s12 m4">              
+      <div class="card sticky-action hoverable">
+        <div class="card-image">
+          {% if publicacion.getImagenes()|length > 0 %}
+           {% set imagen = publicacion.getImagenes()|first %}
+           <img class="imagenNoticia" src="{{ asset(imagen.url) }}">             
+          {% else %}
+           <img class="imagenNoticia" src="{{ asset('img/imagen-no-disponible.png') }}">
+          {% endif %}            
+        </div>
+        <div class="card-stacked">
+          <div class="card-content columnaNoticia">
+           <span class="card-title titulo">{{ publicacion.titulo }}</span>   
+          </div> 
+          <div class="card-action">
+           <a href="{{ path('app_publicacion_ver',{'idPublicacion': publicacion.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text">Ver mas</a>             
+          </div>         
+        </div>
+      </div>
+    </div>  
+    <!-- Noticia -->
+  {% endfor %} 
+  {# Muestro las ultimas noticias #}
+
+   
+ <div class="offset-s10 col s2"><a href="{{ path('app_publicaciones') }}" class="waves-effect waves-light btn-small colorOficial white-text right-align">Mas Noticias</a> </div>   
+
+</div>
+<!-- Caja de Noticias -->

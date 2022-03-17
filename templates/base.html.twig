@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+        <title>{% block title %}NombreApp{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/icon.ico') }}">  
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
+        {% block stylesheets %}                         
+         <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
+         <link rel="stylesheet" href="{{ asset('css/materialIcons.css') }}">              
+         <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">   
+         <link rel="stylesheet" href="{{ asset('css/buttons.dataTables.min.css') }}">
+         <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
+         <link rel="stylesheet" href="{{ asset('css/dataTables.semanticui.min.css') }}">
+         <link rel="stylesheet" href="{{ asset('css/jquery.dataTablesNuevo.min.css') }}">        
+        {% endblock %}
+
+        {% block javascripts %}         
+         <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script> 
+         <script src="{{ asset('js/materialize.min.js') }}"></script>            
+         <script src="{{ asset('js/jquery.dataTablesNuevo.min.js') }}"></script> 
+         <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>           
+         <script src="{{ asset('js/pdfmake.min.js') }}"></script>          
+         <script src="{{ asset('js/buttons.html5.min.js') }}"></script> 
+         <script src="{{ asset('js/buttons.print.min.js') }}"></script>
+         <script src="{{ asset('js/tinymce.min.js') }}"></script>         
+         <script src="{{ asset('js/scripts.js') }}"></script>            
+        {% endblock %}
+    </head>
+    <body>
+        <body>
+        {% block body %} 
+        
+        <!-- Header -->
+        {% block header %}
+
+            <!-- Header del sitio --> 
+            <header id="header">         
+             
+
+                <div class="navbar-fixed">  
+                    <nav class="colorOficialBanner bannerLogo">   
+                     <a id="logoUrl" href="{{ path('index') }}" class="logoHeaderIps"><img src="{{ asset('img/logo.png') }}"></a>                          
+                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>  
+                        
+                        <ul class="right hide-on-med-and-down cajaUsuario fondoColorOficialClaro">
+                        {% if app.user %}
+                         <li><a href="{{ path('app_usuario') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>
+                         <li><a href="{{ path('app_logout') }}"><i class="material-icons left">exit_to_app</i> Salir</a></li>
+                        {% else %}                          
+                         <li><a href="{{ path('app_login') }}"><i class="material-icons left">person</i> Ingresar</a></li>   
+                        {% endif %}
+                        </ul>          
+                    </nav>      
+                </div>   
+
+
+            <!-- Nvar para VERSION ESCRITORIO -->  
+            {# Se generan via Api Rest con JS #}
+            <div class="linksMenu hide-on-med-and-down">
+                <nav class="colorOficialClaroBanner">        
+                    <ul id="contenedorTrigger">     
+                     
+                    </ul>
+                </nav>        
+            </div>                  
+            <div id="contenedorDropdowns">
+            </div>
+            {# Se generan via Api Rest con JS #}
+            <!-- Nvar para VERSION ESCRITORIO -->  
+            
+
+
+
+            <!-- Menu Desplegable para VERSION MOVIL -->            
+            <ul class="sidenav" id="mobile-demo"> 
+                {# Enlaces para Logueo #}
+                {% if app.user %}
+                 <li><a href="{{ path('app_usuario') }}"><i class="material-icons left">person</i> {{ app.user.username }}</a></li>
+                 <li><a href="{{ path('app_logout') }}"><i class="material-icons left">exit_to_app</i> Salir</a></li>
+                {% else %}                          
+                 <li><a href="{{ path('app_login') }}"><i class="material-icons left">person</i> Ingresar</a></li>   
+                {% endif %}   
+                <li><div class="divider"></div></li>   
+                {# Enlaces para Logueo #}
+                {# Enlaces que se generan Dinamicamente #}
+                <div id="contenedorMenuMovil">
+
+                </div>
+                {# Enlaces que se generan Dinamicamente #}                          
+            </ul>     
+            <!-- Menu Desplegable para VERSION MOVIL -->                
+
+            
+         </header>
+        <!-- Header del sitio --> 
+
+
+        
+        {% endblock header %}
+        <!-- Header -->
+
+       
+        <!-- Bloque que contendra las vista de la App -->
+        <main> 
+        <br>
+        <div class="container">
+        
+            
+            <!-- Muestro el Contenido de cada vista -->
+            {% block contenido %} 
+            
+
+            {% endblock contenido %}
+            <!-- Muestro el Contenido de cada vista -->
+
+        </div>
+        <br>
+        </main>
+        <!-- Bloque que contendra las vista de la App -->
+
+        
+        
+
+
+        <!-- Footer -->
+        <div class="footer" id="footer">
+            <footer class="page-footer colorOficial">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12">
+                         <h5 class="white-text"><i class="material-icons">home</i> AppNombre</h5>
+                         <p class="grey-text text-lighten-4"><i class="Tiny material-icons">location_on</i> App Ubicacion</p>
+                        </div>              
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                 <div class="container">©App 2022</div>
+                </div>
+            </footer> 
+        </div>
+        <!-- Footer -->
+        {% endblock body %}
+
+        <script type="text/javascript">
+         //Invoco a la funcion para Obtener el Menu Principal
+         obtenerMenuPrincipal('{{ path('app_menu_obtenerJson') }}');
+        </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/alertasFlash.html.twig" %}
+
+<!-- Formulario para Producto -->
+<ul class="collection with-header">
+  <li class="collection-header"><h6>Crear Banner</h6></li>
+      
+   <!-- Entradas del Formulario -->
+   <li class="collection-item">  
+    {% include "default/formularioConFormato.html.twig"  with { 'form': form} %} 
+     {# {{ form(form) }}  #}
+   </li>     
+  <!-- Entradas del Formulario -->
+</ul>
+<!-- Formulario para Producto -->
+
+<!-- Botones de Direccionamiento -->
+{% include "default/botonera.html.twig" %}
+<!-- Botones de Direccionamiento -->
+
+{% endblock %}
+

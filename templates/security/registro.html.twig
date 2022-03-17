@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+        {% block contenido %} 
+         <div class="offset-s2 col s8 offset-s2">
+            <ul class="collection with-header">
+             <li class="collection-header white-text"><center><h5>Registrar Usuario</h5></center></li>
+                <!-- Formulario de Registro -->
+                <li class="collection-item">{{ form(form) }}</li>
+                <!-- Formulario de Registro -->
+         </div>
+
+        <div class="offset-s2 col s8 offset-s2">
+         <center>
+            <a href="{{ path('app_registro') }}" class="waves-effect waves-light btn-small colorOficial white-text">
+             <i class="material-icons left">add</i>Registrarme
+            </a> 
+         </center>
+        </div>
+
+
+        {% endblock contenido %}
+        
+        
+
+
+
+
+
+

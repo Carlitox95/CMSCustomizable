@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+ <h6 class="tituloColorOficial">Perfil de Usuario</h6>
+
+   <blockquote class="textoBlockquote">
+    <p><strong><i class="material-icons left">info</i> Bienvenido a la Intranet @{{ app.user.username }}</strong></p>
+   </blockquote>
+   
+
+   {# Gestiones de Administracion #} 
+   {% if is_granted('ROLE_ADMIN') %}    
+   <div class="row">      
+      {# Link de Gestion #}
+      <a href="{{ path('app_usuario_abm') }}">
+        <div class="col s12 m6">
+          <div class="card colorOficial">
+            <div class="card-content white-text">
+             <span class="card-title">Gestion de Usuarios</span>             
+            </div>            
+          </div>
+        </div>
+      </a>
+      {# Link de Gestion #}
+      {# Link de Gestion #}
+      <a href="{{ path('app_publicacion') }}">
+      <div class="col s12 m6">
+         <div class="card colorOficial">
+            <div class="card-content white-text">
+             <span class="card-title">Publicaciones</span>             
+            </div>            
+         </div>
+      </div>
+      </a>
+      {# Link de Gestion #}
+      {# Link de Gestion #}
+      <a href="{{ path('app_banner') }}">
+      <div class="col s12 m6">
+         <div class="card colorOficial">
+            <div class="card-content white-text">
+             <span class="card-title">Banners de Avisos</span>             
+            </div>            
+         </div>
+      </div>
+      </a>
+      {# Link de Gestion #}
+      {# Link de Gestion #}
+      <a href="#">
+      <div class="col s12 m6">
+         <div class="card colorOficial">
+            <div class="card-content white-text">
+             <span class="card-title">Accesos</span>             
+            </div>            
+         </div>
+      </div>
+      </a>
+      {# Link de Gestion #}
+      {# Link de Gestion #}
+      <a href="{{ path('app_menu') }}">
+      <div class="col s12 m6">
+         <div class="card colorOficial">
+            <div class="card-content white-text">
+             <span class="card-title">Menu</span>             
+            </div>            
+         </div>
+      </div>
+      </a>
+      {# Link de Gestion #}
+   </div>
+   {% endif %}
+   {# Gestiones de Administracion #} 
+
+{% endblock %}

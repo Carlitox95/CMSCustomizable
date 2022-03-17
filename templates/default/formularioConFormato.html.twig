@@ -1,0 +1,39 @@
+
+{{ form_start(form) }}
+
+{% for f in form %}
+    
+    {# Obtengo el tipo de entrada de datos para renderizarlo correctamente#}
+    {% set tipoInput = f.vars.attr|last %}
+
+        {% if tipoInput == "checkbox" %}           
+            <div class="input-field col s12"> 
+             <br>              
+                <label>
+                 {{ form_widget(f) }}
+                 <span>{{f.vars.label}}</span>
+                </label> 
+             <br>            
+            </div>
+        {% endif %}  
+        {% if tipoInput == "file" %}
+            <div class="file-field input-field">
+                <div class="btn colorOficial white-text">
+                 <span>{{f.vars.label}}</span>
+                 {{ form_widget(f) }}
+                </div>
+                <div class="file-path-wrapper">
+                 <input class="file-path validate" type="text" placeholder="Adjuntar Archivos">
+                </div>
+            </div>
+        {% endif %}  
+
+        {% if tipoInput == "button" %}
+         <div class="input-field col s12">{{ form_widget(f) }}</div>           
+        {% endif %}  
+        {% if tipoInput != "button" and tipoInput != "file" and tipoInput != "checkbox"%}
+         <div class="input-field col s12">{{f.vars.label}}{{ form_widget(f) }}</div>  
+        {% endif %}       
+{% endfor %}
+
+{{ form_end(form) }}

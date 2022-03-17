@@ -1,0 +1,69 @@
+{{ form_start(form) }}        
+    <ul class="collection with-header">
+     <li class="collection-header"><h6>{{ entidad }}</h6></li>     
+        {# Iteramos sobre todos los campos de este formulario #}
+        {% for f in form %} 
+          {% set tipoInput = f.vars.attr|last %}
+            {# Obtengo que tipo de entrada de formulario es #}
+            {% if tipoInput == "multiple" %}  
+             {# Si le pase como Atributo en el ultimo lugar un flag diciendo que es select multiple#}
+
+                {# Obtengo los Labels de los Choices #}
+                {% set arrayLabels = [] %}
+                {% for choice in f.vars.choices %}                 
+                 {% set arrayLabels = arrayLabels|merge([{ label: choice.label }]) %}
+                {% endfor %}
+                
+                {# Obtengo las vistas de formularios renderizadas de los Choices #}
+                {% set arrayChoiceView = [] %}
+                {% for form in f.vars.form %}     
+                 {% set arrayChoiceView = arrayChoiceView|merge([{ formView: form }]) %}  
+                {% endfor %}
+                
+                {# Itero sobre cualquier array generando el contenedor con el label y su vista de formulario correspondiente #}
+                {% if arrayLabels|length > 0 %}<li class="collection-header"><h6>Publicaciones para Enlazar</h6></li>{% endif %}
+               {% for label in arrayLabels %}  
+                  {% if label.label starts with 'Noticia:' %}
+                    <li class="collection-item cyan lighten-4">
+                        <div><strong><i class="material-icons left">public</i> {{label.label}}</strong> 
+                           <div class="secondary-content">
+                            <label> {{ form_widget(arrayChoiceView[loop.index0].formView) }}<span></span></label> 
+                           </div>                        
+                        </div>
+                     </li> 
+                  {% endif %}
+                  {% if label.label starts with 'Post:' %}
+                     <li class="collection-item teal lighten-4">
+                        <div><strong><i class="material-icons left">home</i> {{label.label}}</strong> 
+                           <div class="secondary-content">
+                            <label> {{ form_widget(arrayChoiceView[loop.index0].formView) }}<span></span></label> 
+                           </div>                        
+                        </div>
+                     </li> 
+                  {% endif %}
+                  {% if ( not label.label starts with 'Noticia:') and ( not label.label starts with 'Post:') %}
+                     <li class="collection-item teal lighten-4">
+                        <div><strong><i class="material-icons left">home</i> {{label.label}}</strong> 
+                           <div class="secondary-content">
+                            <label> {{ form_widget(arrayChoiceView[loop.index0].formView) }}<span></span></label> 
+                           </div>                        
+                        </div>
+                     </li> 
+                  {% endif %}
+               {% endfor %}
+             {# Si le pase como Atributo en el ultimo lugar un flag diciendo que es select multiple#}
+            {% else %}
+             {# Si no es una seleccion lo muestro nada mas , sin que sea un tokken #}
+                {% if f.vars.name != "_token" %}
+                 <li class="collection-item">{{f.vars.label}} {{ form_widget(f) }}</li>
+                {% endif %}   
+             {# Si no es una seleccion lo muestro nada mas , sin que sea un tokken #}      
+            {% endif %}         
+        {% endfor %}
+        {# Iteramos sobre todos los campos de este formulario #}
+    </ul>
+    
+{{ form_rest(form) }}
+{{ form_end(form) }}
+
+

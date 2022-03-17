@@ -1,0 +1,30 @@
+{# read and display just one flash message type #}
+{% for message in app.flashes('aviso') %}
+    <div class="row">
+        <div class="offset-s2 col s8 offset-s2 colorOficialClaro">
+         <center><h6>{{ message }}</h6></center>
+        </div>
+    </div>
+{% endfor %}
+
+{# read and display several types of flash messages #}
+{% for label, messages in app.flashes(['exito', 'alerta']) %}
+    {% for message in messages %}
+        <div class="row">
+            <div class="offset-s2 col s8 offset-s2 colorOficialClaro">
+             <center><h6>{{ message }}</h6></center>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="row">
+            <div class="offset-s2 col s8 offset-s2 colorOficialClaro">
+             <center><h6>{{ message }}</h6></center>
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}

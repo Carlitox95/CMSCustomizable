@@ -1,0 +1,202 @@
+body {
+ display: flex;
+ min-height: 100vh;
+ flex-direction: column;
+}
+
+main {
+
+ #padding-left: 4%;
+ #padding-right: 4%;
+ flex: 1 0 auto;
+}
+
+@media only screen and (min-width: 601px) {
+  main { 
+   margin-top: 40px; 
+  }
+}
+@media only screen and (min-width: 993px) {
+  main { 
+   margin-top: 40px; 
+  }
+}
+
+.container {
+ margin: 0 auto;
+ max-width: 1280px;
+ width: 98%;
+}
+
+@media only screen and (min-width: 601px) {
+  .container {
+   width: 95%;
+  }
+}
+@media only screen and (min-width: 993px) {
+  .container {  
+   width: 90%;
+  }
+}
+
+/* Estilos CSS para el Header */
+
+.logoHeaderIps {
+ padding-left: 50px;
+ padding-top: 50px;   
+}
+
+.bannerLogo {    
+ vertical-align: middle;
+ height: 100px;
+ padding-top: 20px;
+ #padding-bottom: 100px;
+ margin-bottom: 20px;
+}
+
+/* Estilo CSS de los enlaces  */
+a {
+ color: black;
+}
+
+/* Estilos CSS del Menu de Opciones de Escritorio */
+
+.linksMenu {
+ margin-top: 30px;
+}
+
+nav {
+ height: 45px;
+}
+
+.dropdown-trigger {
+ height: 45px;
+}
+
+/* Caja del Usuario para Login */
+
+.cajaUsuario {
+ margin-right: 5%;
+ -webkit-border-radius: 50px;
+ -moz-border-radius: 50px;
+ border-radius: 50px;
+}
+
+/* Color oficial y tono mas claro del hexadecimal que actua en la pagina */
+.colorOficial {
+ background-color: #00aec3; /* Celeste Oficial */
+}
+
+.colorOficialClaro {
+ background-color: #02c2d9; /* Celeste mas claro Oficial */
+}
+
+/* Color Oficial y tono mas claro del Banner Superior IPS */
+
+.colorOficialBanner { 
+ background-color: #00aec3; /* Celeste Oficial */
+ #background-color: #410066; /* Color 8M */
+}
+
+.colorOficialClaroBanner {
+ background-color: #02c2d9; /* Celeste mas claro Oficial */
+ #background-color: #610099; /* Color 8M */
+}
+
+.fondoColorOficialClaro {
+ background-color: #00d8f5;
+}
+
+
+/* Subrayado de color para los Titulos */
+
+.tituloColorOficial {
+ border-bottom: 3px solid #00aec3;
+ padding-bottom:2px;
+}
+
+/* Color del Header de las Coleccion */
+
+.collection-header {
+ background-color: #00aec3 !important;
+ color: white;
+}
+
+/* Color de las menciones de texto */
+
+.textoBlockquote {
+ border-color:#00aec3; 
+ text-align: justify;
+}
+
+.titulo {
+ font-size: 18px;
+ #text-align: justify !important;
+}
+
+.gris90 {
+ color: #5a5a5a;
+}
+
+/* Estilos CSS sobre las cajas de las noticias */
+
+.columnaNoticia {
+ min-height:200px;
+ max-height:200px; 
+ overflow: hidden;
+}
+
+.tituloColumna {
+ font-size: 0.8vw;   
+}
+
+.card { 
+ margin: 0.5rem 0 1rem 0;
+ #margin: 0 0 1rem 0;
+}
+
+.card.horizontal .card-image {
+ max-width: 30%;
+ vertical-align: middle;
+}
+
+.cardHeaderCustom {
+ margin-top: 0.5rem;
+ #background-color: #02c2d9;
+ background-color: rgba(160, 160, 160, 0.2);
+ color: black;
+ -webkit-border-top-left-radius: 30px;
+ -webkit-border-top-right-radius: 30px;
+ -moz-border-radius-topleft: 30px;
+ -moz-border-radius-topright: 30px;
+ border-top-left-radius: 30px;
+ border-top-right-radius: 30px;
+}
+
+.sobreImagen {
+ vertical-align: middle;
+ color: white;
+ bottom:0px;
+ background-color: #00aec3; 
+ border:1px solid black;
+}
+
+.bannersNoticias {
+ margin-top:50px;
+}
+
+.cajaNoticia {
+ background-color: red;
+}
+
+.parrafoNoticia {
+ text-align: justify;   
+}
+
+.imagenNoticia {
+ height: 250px;
+}
+
+.collapsible-body { 
+padding: 0rem;
+}

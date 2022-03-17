@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/alertasFlash.html.twig" %}
+
+<h6 class="tituloColorOficial">Gestor de Menu</h6>
+
+<blockquote class="textoBlockquote">
+ <p><strong><i class="material-icons left">info</i> Acceda a las funcionalidades del Sistema</strong></p>
+</blockquote>
+
+{# Opciones de Funcionalidades #}
+<div class="row">
+
+<a href="{{ path('app_menu_crear') }}">
+   <div class="col s12 m3">
+      <div class="card colorOficial">
+         <div class="card-content white-text">
+          <span class="card-title">Crear Menu</span>             
+         </div>            
+      </div>
+   </div>
+</a>
+
+</div>
+{# Opciones de Funcionalidades #}
+
+{# Muestro los Menus Creados #}
+<div class="row">
+<h6 class="tituloColorOficial">Menus Creados</h6>
+
+<table id="tabla" class="striped">
+  <thead class="colorOficial white-text">
+    <tr>     
+     <th>Nombre</th>
+     <th>Nro Orden (ubicacion)</th>
+     <th>Cantidad de Enlaces</th>         
+     <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody class="cyan lighten-5">
+    {% for menu in menus %}
+      <tr>
+       <td>{{ menu.nombre }}</td>
+       <td>{{ menu.orden }}</td>
+       <td>{{ menu.getPublicaciones()|length }}</td> 
+         <td>        
+          <a href="{{ path('app_menu_editar',{'idMenu': menu.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">create</i></a>    
+          <a href="{{ path('app_menu_eliminar',{'idMenu': menu.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">delete</i></a>                      
+        </td>         
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{# Muestro los Menus Creados #}
+
+<br>
+
+{# Muestro el Menu hasta el Momento #}
+{% if menus|length > 0%}
+<div class="row"> 
+<h6 class="tituloColorOficial">Estructura del Menu Actual</h6>
+
+<blockquote class="textoBlockquote">
+ <p><strong><i class="material-icons left">info</i> El siguiente esquema corresponde al Menu configurado en tiempos de ejecucion</strong></p>
+</blockquote>
+
+   <ul class="collapsible">
+   {% for menu in menus %}
+      <li>
+         <div class="collapsible-header colorOficial white-text">
+          <i class="material-icons">apps</i>{{ menu.nombre }}       
+         </div>
+         <div class="collapsible-body">
+            <ul class="collection">            
+               {% for publicacion in menu.getPublicaciones() %}
+                <a href="{{ path('app_publicacion_ver',{'idPublicacion': publicacion.id}) }}" class="collection-item"><strong><i class="material-icons left">info</i> {{ publicacion.titulo }}</strong></a>
+               {% endfor %}  
+            </ul>       
+         </div>
+      </li>   
+   {% endfor %}
+   </ul>
+</div>
+{% endif %}
+{# Muestro el Menu hasta el Momento #}
+
+{% endblock %}

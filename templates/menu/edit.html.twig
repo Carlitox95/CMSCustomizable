@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/alertasFlash.html.twig" %}
+
+<h6 class="tituloColorOficial">Editar Menu {{ menu.nombre }}</h6>
+
+<blockquote class="textoBlockquote">
+ <p><strong><i class="material-icons left">info</i> A continuacion podra definir un link hacia una Publicacion para el Menu Seleccionado</strong></p>
+</blockquote>
+
+<!-- Formulario -->
+{% include "default/formularioSeleccionarMultiplesEntidades.html.twig"  with { 'form': form, 'entidad': 'Editar Menu de Publicaciones'} %} 
+<!-- Formulario -->
+
+<!-- Botones de Direccionamiento -->
+{% include "default/botonera.html.twig" %}
+<!-- Botones de Direccionamiento -->
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/alertasFlash.html.twig" %}
+
+<h6 class="tituloColorOficial">{{ publicacion.titulo }}</h6>
+
+<blockquote class="textoBlockquote">
+ <p><strong><i class="material-icons left">date_range</i> {{ publicacion.fecha|date('Y-m-d') }}</strong></p>
+</blockquote>
+
+
+ <p class="parrafoNoticia">{{ publicacion.cuerpo|raw }}</p>
+ <br>
+  
+  
+  {# Galeria de Imagenes #}
+  <div class="row"> 
+  {% if publicacion.getImagenes()|length > 0 %}
+    {% for imagen in publicacion.getImagenes() %}
+      <div class="col s12 m4">
+       <img class="responsive-img" src="{{ asset(imagen.url) }}">   
+        {% if is_granted('ROLE_ADMIN') %} 
+         <a href="{{ path('app_publicacion_imagen_eliminar',{'idImagen': imagen.id}) }}" title="Eliminar Imagen" class="btn-floating btn-small waves-effect waves-light"><i class="material-icons">remove</i></a>          
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %} 
+  </div>
+  {# Galeria de Imagenes #}
+  
+
+  {# Visualizador de Archivos #}
+  {% if publicacion.getArchivos()|length > 0 %} 
+    <div class="row"> 
+      <ul class="collection with-header">
+       <li class="collection-header"><h6>Archivos Adjuntos</h6></li>
+        {% for archivo in publicacion.getArchivos() %}        
+          <li class="collection-item">
+            <div>
+              <strong><i class="material-icons left">attach_file</i> {{ archivo.nombre }}</strong>              
+              <div class="secondary-content">             
+                {% if is_granted('ROLE_ADMIN') %} 
+                 <a href="{{ path('app_publicacion_archivo_eliminar',{'idArchivo': archivo.id}) }}" title="Eliminar Archivo"><i class="material-icons">delete</i></a>          
+                {% endif %}
+               <a title="Descargar Archivo" href="/{{ archivo.url }}" target="framename"><i class="material-icons">file_download</i></a>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>              
+    </div>
+  {% endif %}  
+  {# Visualizador de Archivos #}
+
+
+
+
+
+
+
+
+
+
+
+{% if is_granted('ROLE_ADMIN') %}
+ <center><a href="{{ path('app_publicacion_editar',{'idPublicacion': publicacion.id}) }}" class="waves-effect waves-light btn-small colorOficial white-text" title="Editar"><i class="material-icons left">edit</i> Editar Publicacion</a>    </center>
+{% endif %}
+
+{% endblock %}

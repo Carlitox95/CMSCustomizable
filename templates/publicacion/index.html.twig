@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/alertasFlash.html.twig" %}
+
+<h6 class="tituloColorOficial">Gestor de Publicaciones</h6>
+
+<blockquote class="textoBlockquote">
+ <p><strong><i class="material-icons left">info</i> Acceda a las funcionalidades del Sistema</strong></p>
+</blockquote>
+
+{# Opciones del Gestor #}
+<div class="row">
+
+  <a href="{{ path('app_publicacion_nueva') }}">
+  <div class="col s12 m6">
+    <div class="card colorOficial">
+      <div class="card-content white-text">
+       <span class="card-title">Crear Publicacion</span>             
+      </div>            
+    </div>
+  </div>
+  </a>
+
+</div>
+{# Opciones del Gestor #}
+
+<br>
+
+<h6 class="tituloColorOficial">Publicaciones Existentes</h6>
+
+<div class="row">
+<table id="tabla">
+  <thead class="colorOficial white-text">
+    <tr>     
+     <th>Fecha</th>
+     <th>Tipo</th>
+     <th>Titulo</th>         
+     <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody class="cyan lighten-5">
+    {% for publicacion in publicaciones %}
+      
+        {% if publicacion.getFlagNoticia() %}
+         <tr class="cyan lighten-3">
+        {% else %}
+         <tr class="teal lighten-3">
+        {% endif %}       
+       <td><center>{{ publicacion.fecha|date('Y-m-d') }}</center></td>
+       <td><strong>{% if publicacion.getFlagNoticia() %} Noticia {% else %} Post {% endif %}</strong></td>
+       <td>{{ publicacion.titulo }}</td> 
+       <td>          
+         <a href="{{ path('app_publicacion_ver',{'idPublicacion': publicacion.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Ver"><i class="material-icons">visibility</i></a>  
+         <a href="{{ path('app_publicacion_editar',{'idPublicacion': publicacion.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">create</i></a>    
+         <a href="{{ path('app_publicacion_eliminar',{'idPublicacion': publicacion.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">delete</i></a>                      
+        </td>         
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+{% endblock %}

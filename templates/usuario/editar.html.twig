@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+ 
+
+                
+{% block contenido %}
+<div class="separadorMain">  
+    
+   <!-- Formulario para Editar Datos -->
+    <div class="offset-s2 col s8 offset-s2">
+        <ul class="collection with-header">
+         <li class="collection-header"><h6>Modificar Datos del Usuario: {{usuario}}</h6></li>
+         <li class="collection-item">{{ form(form) }}</li>
+        </ul>
+    </div>
+   <!-- Formulario para Editar Datos -->
+ 
+    
+</div>
+{% endblock contenido %}            
+

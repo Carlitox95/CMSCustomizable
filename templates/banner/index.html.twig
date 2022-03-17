@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/alertasFlash.html.twig" %}
+
+<h6 class="tituloColorOficial">Gestor de Banners de Aviso</h6>
+
+<blockquote class="textoBlockquote">
+ <p><strong><i class="material-icons left">info</i> Acceda a las funcionalidades del Sistema</strong></p>
+</blockquote>
+
+{# Opciones del Gestor #}
+<div class="row">
+
+  <a href="{{ path('app_banner_nuevo') }}">
+  <div class="col s12 m6">
+    <div class="card colorOficial">
+      <div class="card-content white-text">
+       <span class="card-title">Crear Banner de Aviso</span>             
+      </div>            
+    </div>
+  </div>
+  </a>
+
+</div>
+{# Opciones del Gestor #}
+
+<br>
+
+<h6 class="tituloColorOficial">Banners Existentes</h6>
+
+<div class="row">
+    
+    {% if banners|length > 0 %}
+      <ul class="collection with-header">
+        <li class="collection-header"><h6>Banners en el Sistema</h6></li>
+        {% for banner in banners %}
+        <li class="collection-item">
+          <div>
+           <i class="material-icons left">image</i>{{ banner.nombre }} - <strong>Estado:</strong> {% if banner.activo == 1 %} Activo {% else %} Inactivo {% endif %}    
+            <div class="secondary-content"> 
+             
+              <a title="Editar" href="{{ path('app_banner_enlazar',{'idBanner': banner.id}) }}"><i class="material-icons">edit</i></a>
+
+              {% if banner.activo == 1 %} 
+               <a title="Activar Banner" href="{{ path('app_banner_cambiar_estado',{'idBanner': banner.id}) }}"><i class="material-icons">radio_button_checked</i></a>
+              {% else %}                
+               <a title="Desactivar Banner" href="{{ path('app_banner_cambiar_estado',{'idBanner': banner.id}) }}"><i class="material-icons">radio_button_unchecked</i></a>  
+              {% endif %}
+              
+               
+
+
+
+             <a title="Eliminar" href="{{ path('app_banner_eliminar',{'idBanner': banner.id}) }}"><i class="material-icons">remove_circle</i></a>
+             <a title="Descargar Banner" href="{{ banner.imagen.url }}"><i class="material-icons">file_download</i></a>
+            </div>       
+           
+          </div>
+        </li>
+        {% endfor %}
+        </li>        
+      </ul>
+    {% endif %} 
+
+</div>
+
+
+{% endblock %}

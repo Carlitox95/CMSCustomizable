@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/alertasFlash.html.twig" %}
+
+<!-- Formulario -->
+{% include "default/formularioSeleccionarMultiplesEntidades.html.twig"  with { 'form': form, 'entidad': 'Menu de Publicaciones'} %} 
+<!-- Formulario -->
+
+<!-- Botones de Direccionamiento -->
+{% include "default/botonera.html.twig" %}
+<!-- Botones de Direccionamiento -->
+
+{% endblock %}

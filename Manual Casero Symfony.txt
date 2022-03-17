@@ -1,0 +1,46 @@
+========================================
+Comandos SYMFONY 5
+========================================
+
+- Instalar Symfony Web App: symfony new my_project_name --full
+- Instalar Symfony Api Rest: symfony new my_project_name
+- Instalar Dependencias: composer install
+- Instalar Web Server: composer require symfony/apache-pack
+- Instalar Paquete de Seguridad: composer require symfony/security-bundle
+- Instalar Paquete de Error: composer require symfony/twig-pack
+- Crear la Base de datos: php bin/console doctrine:database:create
+- Crear la entidad Usuario: php bin/console make:user
+- Crear Autentificador de Usuario: php bin/console make:auth
+- Crear Entidades: php bin/console make:entity
+- Crear Controladores: php bin/console make:controller
+- Crear Formulario: php bin/console make:form
+- Iniciar Servidor: symfony server:start
+- Crear Migracion:  php bin/console make:migration
+- Iniciar Migraciones:  php bin/console doctrine:migrations:migrate
+- Actualizar Entidades en BD:  php bin/console doctrine:schema:update --dump-sql
+- Actualizar CSS: php bin/console assets:install
+- Limpiar Cache:  php bin/console cache:clear
+
+========================================
+Relacionar entidades via Consola
+========================================
+
+1- Ejecutar Comando: php bin/console make:entity
+2- Poner el nombre de la entidad que quiere relacionar con otra)
+3- Poner nombre del atributo a la relacion
+4- En el Tipo de atributo debe ponerse "relation"
+5- Seleccionar el tipo de relacion: ManyToOne,OneToMany,ManyToMany o OneToOne
+6- Finalizar la relacion y la edicion de la entidad
+7- Ejecutar: php bin/console make:migration
+8- Ejecutar: php bin/console doctrine:migrations:migrate
+
+
+========================================
+Crear Base de Datos
+========================================
+
+1- php bin/console make:migration
+2- php bin/console doctrine:migrations:migrate
+3- Ejecutar en PhpMyAdmin el Usuario Administrador "ADMIN" "1234asd"
+
+INSERT INTO `usuario` (`id`, `username`, `mail`, `roles`, `password`) VALUES(1, 'Admin', 'carlos.drsnak@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$diVSxgQfkPem/D1NwHXHMe4uyOHtE.66T9d2Or1vB16B6Z.EuvZcq');

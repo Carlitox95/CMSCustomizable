@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %} 
+
+{% include "default/alertasFlash.html.twig" %}
+
+<h6 class="tituloColorOficial gris90">Nueva Publicacion</h6>
+
+{# {{ form(form) }}  #}
+
+{% include "default/formularioConFormato.html.twig"  with { 'form': form} %}
+
+
+<!-- Botones de Direccionamiento -->
+{% include "default/botonera.html.twig" %}
+<!-- Botones de Direccionamiento -->
+
+{% endblock %}
+

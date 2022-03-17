@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+        {% block contenido %} 
+         <div class="offset-s2 col s8 offset-s2">
+            <ul class="collection with-header">
+             <li class="collection-header white-text"><center><h5>Ingresar al Sistema</h5></center></li>
+                <!-- Formulario de Ingreso -->
+                <li class="collection-item">
+                    
+                    <form method="post">
+                        {% if error %}
+                         <div class="alert alert-danger"><center>{{ error.messageKey|trans(error.messageData, 'security') }}</center></div>
+                        {% endif %}
+
+                        <div class="input-field col s6">
+                         <i class="material-icons prefix">account_circle</i>
+                         <input placeholder="Ingrese nombre de Usuario" type="text" value="{{ last_username }}" name="username" id="inputUsername" class="validate" required>
+                         <label for="inputUsername">Usuario</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                         <i class="material-icons prefix">text_format</i>
+                         <input placeholder="Ingrese su contraseña" type="password" name="password" id="inputPassword" class="validate" autocomplete="current-password" required>
+                         <label for="inputPassword">Contraseña</label>
+                        </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        
+                     <br>
+                       
+                        <center>
+                            <button style="margin:5px;" class="btn colorOficial white-text" type="submit"><i class="material-icons left">send</i> Ingresar</button>
+                            <a style="margin:5px;" href="{{ path('app_registro') }}" class="waves-effect waves-light btn colorOficial white-text">
+                             <i class="material-icons left">person_add</i>Registrarme
+                            </a> 
+                        </center>                     
+                    </form>
+                </li>
+                <!-- Formulario de Ingreso -->
+         </div>
+        {% endblock contenido %}
+        
+        
+        
+
+
+
+
+
+
+

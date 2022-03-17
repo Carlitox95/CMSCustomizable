@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+ 
+  
+{% block contenido %}
+<div class="separadorMain">  
+
+  <h6 class="tituloColorOficial">Usuarios Registrados en el Sistema</h6>
+
+  <blockquote class="textoBlockquote">
+   <p><strong><i class="material-icons left">info</i> Listado de los Usuarios Registrados en el Sistema</strong></p>
+  </blockquote>
+
+  <!-- Caja  -->
+  <div class="offset-s2 col s8 offset-s2">    
+    <div class="row">
+    <table id="tabla" class="striped centered">
+        <thead class="colorOficial white-text">
+          <tr>
+              <th>Usuario</th>
+              <th>Rango</th>
+              <th>Mail</th>
+              <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="cyan lighten-5">
+          {% for usuario in usuarios %}
+          <tr>
+            <td><strong>{{usuario}}</strong></td>
+            <td> 
+              {% if usuario.roles[0] == "ROLE_ADMIN" %}
+               <strong><i class="material-icons small">verified_user</i> Administrador</strong>
+              {% endif %}
+              {% if usuario.roles[0] == "ROLE_USER" %}
+               <strong><i class="material-icons small">person</i> Usuario</strong>
+              {% endif %}
+            </td>
+            <td>{{usuario.mail}}</td>
+            <td>              
+              <a href="{{ path('app_usuario_abm_editar',{'idUsuario': usuario.id}) }}" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Editar"><i class="material-icons">create</i></a>
+              <a href="#" class="btn-floating btn-small waves-effect waves-light teal lighten-2 white-text" title="Borrar"><i class="material-icons">delete</i></a>
+            </td>         
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>   
+  <!-- Caja -->
+
+   
+</div>
+{% endblock contenido %}            
+
